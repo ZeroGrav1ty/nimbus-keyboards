@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+✨ Introduction
+Nimbus Keyboards is a 3D interactive keyboard showcase website. Users can explore keyboard models, switch types, and keycaps in 3D with smooth animations. The site also integrates Stripe Checkout for secure, real-world payment flows — making it a mini e-commerce experience.
 
-## Getting Started
+It leverages Next.js 15, TailwindCSS, Prismic CMS, and React Three Fiber to deliver immersive interactions and content-driven layouts.
 
-First, run the development server:
+⚙️ Tech Stack
+⚡ Framework & Core
+Next.js 15 – Full-stack React framework for SSR, SSG, and ISR.
+React 19 (RC) – Component-based UI library.
+TypeScript 5 – Static typing for safer, maintainable code.
+🎨 Styling & UI
+Tailwind CSS 3.4 – Utility-first CSS framework.
+Fluid Tailwind – Responsive fluid typography & spacing.
+clsx – Conditional class management for dynamic styling.
+React Icons – Ready-to-use icon sets.
+📦 CMS & Content
+Prismic CMS – Headless CMS for managing dynamic content.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+@prismicio/client, @prismicio/react, @prismicio/next – Prismic SDKs for Next.js integration.
+Slice Machine – Local custom type & slice builder for content modeling.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🎬 Animation
+GSAP 3.12 – Timeline-based animations for smooth transitions.
+@gsap/react – GSAP integration with React components.
+🖼 3D & Visualization
+Three.js 0.171 – 3D rendering engine.
+React Three Fiber – React renderer for Three.js.
+@react-three/drei – Helpers & controls for React Three Fiber.
+💳 Payments
+Stripe Checkout – Secure payment gateway for checkout flows.
+🧹 Tooling
+ESLint + eslint-config-next – Linting and code quality.
+PostCSS – CSS processing.
+Turbopack – Fast local dev server (next dev).
+🔋 Features
+Landing Page – Hero section with immersive 3D keyboard.
+3D Keyboard Models – Rotate, zoom, and interact with keyboard layouts.
+Switch Playground – Explore switches in 3D for tactile comparison.
+Keycap Changer – Visualize custom keycap sets in real-time.
+Dynamic Content – Manage content via Prismic CMS.
+Smooth Animations – Powered by GSAP timelines and ScrollTrigger.
+Secure Payments – Stripe Checkout integration for real transactions.
+Responsive Design – Desktop, tablet, and mobile friendly.
