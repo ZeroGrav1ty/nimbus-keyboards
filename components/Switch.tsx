@@ -6,10 +6,10 @@ import { ThreeEvent } from "@react-three/fiber";
 import gsap from "gsap";
 
 export const SOUND_MAP = {
-  red: ["/sounds/red-1.mp3", "/sounds/red-1.mp3", "/sounds/red-1.mp3"],
-  brown: ["/sounds/brown-1.mp3", "/sounds/brown-1.mp3", "/sounds/brown-1.mp3"],
-  blue: ["/sounds/blue-1.mp3", "/sounds/blue-1.mp3", "/sounds/blue-1.mp3"],
-  black: ["/sounds/black-1.mp3", "/sounds/black-1.mp3", "/sounds/black-1.mp3"],
+  red: ["/sounds/red-1.mp3", "/sounds/red-2.mp3", "/sounds/red-3.mp3"],
+  brown: ["/sounds/brown-1.mp3", "/sounds/brown-2.mp3", "/sounds/brown-3.mp3"],
+  blue: ["/sounds/blue-1.mp3", "/sounds/blue-2.mp3", "/sounds/blue-3.mp3"],
+  black: ["/sounds/black-1.mp3", "/sounds/black-2.mp3", "/sounds/black-3.mp3"],
 };
 
 // Type definitions
@@ -56,7 +56,7 @@ export function Switch({ color, hexColor, ...restProps }: SwitchProps) {
     gsap.killTweensOf(stem.position);
     gsap.killTweensOf(switchGroup.rotation);
 
-    gsap.to(switchGroup?.rotation, {
+    gsap.to(switchGroup.rotation, {
       x: Math.PI / 2 + 0.1,
       duration: 0.05,
       ease: "power2.out",
@@ -68,7 +68,7 @@ export function Switch({ color, hexColor, ...restProps }: SwitchProps) {
       ease: "power2.out",
     });
 
-    //Audio
+    // Audio
 
     audio.current = gsap.utils.random(allAudio.current);
     audio.current.currentTime = 0;
@@ -80,23 +80,23 @@ export function Switch({ color, hexColor, ...restProps }: SwitchProps) {
   };
 
   const releaseSwitch = () => {
-    if (!stemRef.current || !switchGroupRef.current || isPressedRef.current)
+    if (!stemRef.current || !switchGroupRef.current || !isPressedRef.current)
       return;
     isPressedRef.current = false;
 
     const stem = stemRef.current;
     const switchGroup = switchGroupRef.current;
 
-    gsap.to(switchGroup?.rotation, {
+    gsap.to(switchGroup.rotation, {
       x: Math.PI / 2,
       duration: 0.6,
-      ease: "elastic.out(1 , 0.3)",
+      ease: "elastic.out(1,0.3)",
     });
 
     gsap.to(stem.position, {
       z: 0,
       duration: 0.15,
-      ease: "elastic.out(1 , 0.3)",
+      ease: "elastic.out(1, 0.3)",
     });
 
     if (audioTimeout.current) clearTimeout(audioTimeout.current);
@@ -114,15 +114,14 @@ export function Switch({ color, hexColor, ...restProps }: SwitchProps) {
 
   return (
     <group {...restProps}>
-      {/* Hit Box */}
-
+      {/* Hit box */}
       <mesh
+        position={[0, 0.05, 0]}
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
-        position={[0, 0.05, 0]}
+        onPointerLeave={handlePointerLeave}
         onPointerOver={() => (document.body.style.cursor = "pointer")}
         onPointerOut={() => (document.body.style.cursor = "default")}
-        onPointerLeave={handlePointerLeave}
       >
         <boxGeometry args={[0.15, 0.15, 0.15]} />
         <meshBasicMaterial transparent opacity={0} />
