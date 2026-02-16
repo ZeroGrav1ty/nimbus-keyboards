@@ -2,9 +2,13 @@
 
 import { FC } from "react";
 import { Content, isFilled } from "@prismicio/client";
-import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import {
+  PrismicRichText,
+  PrismicText,
+  SliceComponentProps,
+} from "@prismicio/react";
 import { Bounded } from "@/components/Bounded";
-import { FadeIn } from "../../components/FadeIn";
+import { FadeIn } from "@/components/FadeIn";
 import clsx from "clsx";
 import { Canvas } from "@react-three/fiber";
 import { SOUND_MAP, Switch } from "@/components/Switch";
@@ -34,9 +38,10 @@ const SwitchPlayground: FC<SwitchPlaygroundProps> = ({ slice }) => {
           id="switch-playground"
           className="font-bold-slanted scroll-pt-6 text-6xl uppercase md:text-8xl"
         >
-          <PrismicRichText field={slice.primary.heading} />
+          <PrismicText field={slice.primary.heading} />
         </h2>
-        <div className="md-6 max-w-4xl text-xl text-pretty">
+
+        <div className="mb-6 max-w-4xl text-xl text-pretty">
           <PrismicRichText field={slice.primary.description} />
         </div>
 
@@ -46,8 +51,7 @@ const SwitchPlayground: FC<SwitchPlaygroundProps> = ({ slice }) => {
         >
           {slice.primary.switches.map((item) =>
             isFilled.contentRelationship(item.switch) ? (
-              // Render the item
-              <SharedCanvas color={item.switch} key={item.switch.id} />
+              <SharedCanvas key={item.switch.id} color={item.switch} />
             ) : null,
           )}
         </FadeIn>
@@ -85,12 +89,15 @@ const SharedCanvas = ({ color }: SharedCanvasProps) => {
 
   return (
     <div className="group relative min-h-96 overflow-hidden rounded-3xl select-none">
+      {/* Text button */}
+
       <button
         onClick={handleSound}
         className="font-bold-slanted absolute bottom-0 left-0 z-10 flex items-center gap-3 p-6 text-4xl text-white uppercase focus:ring-2 focus:ring-white focus:outline-none"
       >
         {name} <LuVolume2 />
       </button>
+      {/* Canvas */}
       <Canvas camera={{ position: [1.5, 2, 0], fov: 7 }}>
         <Stage
           adjustCamera
@@ -121,7 +128,7 @@ const SharedCanvas = ({ color }: SharedCanvasProps) => {
             className="font-black-slanted fill-white/30 uppercase mix-blend-overlay group-hover:fill-white motion-safe:transition-all motion-safe:duration-700"
           >
             {Array.from({ length: 8 }, (_, i) => (
-              <tspan key={i} x={`${(i + 1) * 19}%`} dy={i == 0 ? -40 : 14}>
+              <tspan key={i} x={`${(i + 1) * 10}%`} dy={i === 0 ? -40 : 14}>
                 {colorName}
                 {colorName}
                 {colorName}
