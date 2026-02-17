@@ -1,10 +1,12 @@
+"use client";
+
 import { Keyboard } from "@/components/Keyboard";
 import { Stage, useTexture } from "@react-three/drei";
 import { KEYCAP_TEXTURES } from ".";
 import { useMemo, useRef, useState } from "react";
 import * as THREE from "three";
-import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 gsap.registerPlugin(useGSAP);
 
@@ -33,6 +35,7 @@ export function Scene({ selectedTextureId, onAnimationComplete }: SceneProps) {
           onAnimationComplete();
         },
       });
+
       tl.to(keyboard.position, {
         y: 0.3,
         duration: 0.4,
@@ -63,18 +66,21 @@ export function Scene({ selectedTextureId, onAnimationComplete }: SceneProps) {
       if (texture) {
         texture.flipY = false;
         texture.colorSpace = THREE.SRGBColorSpace;
+
         materialMap[textureConfig.id] = new THREE.MeshStandardMaterial({
           map: texture,
           roughness: 0.7,
         });
       }
     });
+
     return materialMap;
   }, [textures]);
 
   const currentKnobColor = KEYCAP_TEXTURES.find(
     (t) => t.id === selectedTextureId,
   )?.knobColor;
+
   return (
     <Stage environment={"city"} intensity={0.05} shadows="contact">
       <group ref={keyboardRef}>

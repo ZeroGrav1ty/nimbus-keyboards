@@ -30,9 +30,9 @@ const PurchaseButton: FC<PurchaseButtonProps> = ({ slice }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
   const [isPressed, setIsPressed] = useState(false);
+
   const handlePurchaseClick = async () => {
     setIsPressed(true);
-    // TODO: add checkout logic later
     await checkout();
     setIsPressed(false);
   };
@@ -88,22 +88,27 @@ const PurchaseButton: FC<PurchaseButtonProps> = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      <FadeIn className="relative mx-auto max-w-7xl px-4 text-center">
+      <FadeIn
+        className="relative mx-auto max-w-7xl px-4 text-center"
+        targetChildren
+      >
         <p className="mb-6 text-xl font-medium text-gray-700 md:text-2xl">
           {slice.primary.eyebrow}
         </p>
+
         <h2
           id="buy-button"
           className="font-bold-slanted mb-8 scroll-pt-6 text-5xl text-gray-900 uppercase md:text-7xl lg:text-8xl"
         >
           <PrismicText field={slice.primary.heading} />
         </h2>
+
         <button
           ref={buttonRef}
           onClick={handlePurchaseClick}
           disabled={isPressed}
           className={clsx(
-            "group relative w-full overflow-hidden rounded-full border-8 border-gray-900 bg-linear-to-r/oklch from-sky-300 to-sky-600 px-6 py-6 ease-out focus:ring-24 focus:ring-sky-500/50 focus:outline-none motion-safe:transition-all motion-safe:duration-300 md:border-12 md:px-20 md:py-16",
+            "group relative w-full overflow-hidden rounded-full border-8 border-gray-900 bg-linear-to-r/oklch from-sky-300 to-sky-600 px-8 py-6 ease-out focus:ring-24 focus:ring-sky-500/50 focus:outline-none motion-safe:transition-all motion-safe:duration-300 md:border-12 md:px-20 md:py-16",
             "hover:scale-105 hover:shadow-2xl hover:shadow-sky-500/40",
             "active:scale-95",
             isPressed
@@ -128,6 +133,7 @@ const PurchaseButton: FC<PurchaseButtonProps> = ({ slice }) => {
                 slice.primary.buttontext
               )}
             </span>
+
             {!isPressed && (
               <div className="hidden group-hover:translate-x-2 group-hover:scale-125 motion-safe:transition-all motion-safe:duration-300 md:block">
                 <LuChevronRight className="size-12 text-gray-900 md:size-16" />

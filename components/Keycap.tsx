@@ -35,6 +35,7 @@ export function Keycap({
   ];
 
   const uvTexture = textures[texture];
+
   const keycapTexture = useTexture(uvTexture);
   keycapTexture.flipY = false;
   keycapTexture.colorSpace = THREE.SRGBColorSpace;
@@ -45,8 +46,8 @@ export function Keycap({
   });
 
   return (
-    <Float rotationIntensity={3}>
-      <group dispose={null} position={position} rotation={rotation}>
+    <Float rotationIntensity={3} position={position} rotation={rotation}>
+      <group dispose={null}>
         <mesh
           castShadow
           receiveShadow

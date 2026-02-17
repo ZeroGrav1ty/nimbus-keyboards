@@ -26,7 +26,7 @@ export function Loader() {
           ease: "bounce.out",
           stagger: 0.2,
         },
-        ".02",
+        ".2",
       );
     },
     { scope: containerRef },

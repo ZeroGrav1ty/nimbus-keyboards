@@ -32,9 +32,9 @@ const BentoBox: FC<BentoBoxProps> = ({ slice }) => {
           <PrismicText field={slice.primary.heading} />
         </h2>
       </FadeIn>
-      <FadeIn targetChildren className="grid-cols grid gap-4 md:grid-cols-6">
+
+      <FadeIn targetChildren className="grid grid-cols-1 gap-4 md:grid-cols-6">
         {slice.primary.items.map((item) => (
-          // Render the item
           <BentoBoxItem key={asText(item.text)} item={item} />
         ))}
       </FadeIn>
@@ -64,6 +64,7 @@ function BentoBoxItem({ item }: BentoBoxItemProps) {
         quality={96}
         width={700}
       />
+
       <div className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-b from-transparent to-black"></div>
 
       <div className="absolute bottom-0 left-0 max-w-xl p-6 text-xl text-balance text-white">

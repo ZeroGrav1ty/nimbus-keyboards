@@ -37,7 +37,7 @@ export function FadeIn({
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       gsap.set(target, {
         opacity: 0,
-        translateY: 60,
+        y: 60,
       });
 
       gsap.to(target, {
